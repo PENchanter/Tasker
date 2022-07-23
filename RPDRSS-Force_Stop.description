@@ -1,0 +1,139 @@
+Task: RPDRSS Force Stop
+Settings: Abort Existing Task
+
+A1: Perform Task [
+ Name: Enable/Disable AutoInput - Don't Disturb Other Accessibility Services
+ Priority: %priority
+ Structure Output (JSON, etc): On ]
+
+A2: Wait [
+ MS: 500
+ Seconds: 0
+ Minutes: 0
+ Hours: 0
+ Days: 0 ]
+
+A3: [X] App Manage Settings
+
+A4: App Settings [
+ App: com.eastsidegames.dragrace ]
+<Call the App Settings action for the target app first, then this task.>
+
+A5: Wait [
+ MS: 500
+ Seconds: 0
+ Minutes: 0
+ Hours: 0
+ Days: 0 ]
+
+A6: AutoInput Action [
+ Configuration: Type: Text
+ Value: Force Stop
+ Action : Click
+ Timeout (Seconds): 20
+ Continue Task After Error:On ]
+
+A7: Wait [
+ MS: 250
+ Seconds: 0
+ Minutes: 0
+ Hours: 0
+ Days: 0 ]
+
+A8: AutoInput Action [
+ Configuration: Type: Text
+ Value: OK
+ Action : Click
+ Timeout (Seconds): 20
+ Continue Task After Error:On ]
+
+A9: Wait [
+ MS: 500
+ Seconds: 0
+ Minutes: 0
+ Hours: 0
+ Days: 0 ]
+
+A10: Show Scene [
+  Name: Dialog Yes/No
+  Display As: Activity
+  Horizontal Position: 100
+  Vertical Position: 100
+  Animation: System
+  Show Over Keyguard: On
+  Allow Outside Boundaries: On
+  Blocking Overlay +: On
+  Overlay +: On ]
+
+A11: Wait [
+  MS: 250
+  Seconds: 0
+  Minutes: 0
+  Hours: 0
+  Days: 0 ]
+If  [ %YesNo ~ yes ]
+
+A12: AutoInput Action [
+  Configuration: Type: Text
+ Value: Storage & cache
+ Action : Click
+  Timeout (Seconds): 20
+  Continue Task After Error:On ]
+If  [ %YesNo ~ yes ]
+
+A13: Wait [
+  MS: 250
+  Seconds: 0
+  Minutes: 0
+  Hours: 0
+  Days: 0 ]
+If  [ %YesNo ~ yes ]
+
+A14: AutoInput Action [
+  Configuration: Type: Text
+ Value: Clear cache
+ Action : Click
+  Timeout (Seconds): 20
+  Continue Task After Error:On ]
+If  [ %YesNo ~ yes ]
+
+A15: Wait [
+  MS: 500
+  Seconds: 0
+  Minutes: 0
+  Hours: 0
+  Days: 0 ]
+If  [ %YesNo ~ yes ]
+
+<** Here is where I am attempting to get Tasker to 'back out' of the APP's "Settings" panel... **>
+A16: [X] AutoInput Action [
+  Configuration: Type: Text
+ Value: Navigate up
+ Action : Click
+  Timeout (Seconds): 23
+  Structure Output (JSON, etc): On ]
+
+<** or **>
+A17: AutoInput Action [
+  Configuration: Type: Id
+ Value: com.android.systemui:id/back
+ Action : Click
+  Timeout (Seconds): 23
+  Structure Output (JSON, etc): On
+  Continue Task After Error:On ]
+<** neither works as desired **>
+
+A18: Wait [
+  MS: 500
+  Seconds: 0
+  Minutes: 0
+  Hours: 0
+  Days: 0 ]
+
+A19: Perform Task [
+  Name: Enable/Disable AutoInput - Don't Disturb Other Accessibility Services
+  Priority: %priority
+  Structure Output (JSON, etc): On ]
+
+A20: Stop [
+  Task: RPDRSS Force Stop ]
